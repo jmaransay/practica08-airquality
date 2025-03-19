@@ -42,7 +42,7 @@ def extract_and_transform():
             #df['date.utc'] = pd.to_datetime(df['date.utc'], errors='coerce')
             # df['date.local'] = df['date.utc'].dt.tz_convert('America/Los_Angeles')
             df['latest.datetime.utc'] = pd.to_datetime(df['latest.datetime.utc'], errors='coerce')
-            df['latest.datetime.local'] = pd.to_datetime(df['latest.datetime.local'], errors='coerce').dt.tz_convert('Spain/Madrid')
+            df['latest.datetime.local'] = pd.to_datetime(df['latest.datetime.local'], errors='coerce').dt.tz_convert('Europe/Madrid')
 
             # df['date.local'] = df['date.local'].dt.tz_localize(None)
             # df = df[df['value'] > 0.0]
