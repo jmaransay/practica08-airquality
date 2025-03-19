@@ -37,10 +37,10 @@ def extract_and_transform():
                 print("Extracted dataframe is empty. No data to load.")
                 return None
 
-            df['date.utc'] = pd.to_datetime(df['date.utc'], errors='coerce')
-            df['date.local'] = df['date.utc'].dt.tz_convert('America/Los_Angeles')
-            df['date.local'] = df['date.local'].dt.tz_localize(None)
-            df = df[df['value'] > 0.0]
+            # df['date.utc'] = pd.to_datetime(df['date.utc'], errors='coerce')
+            # df['date.local'] = df['date.utc'].dt.tz_convert('America/Los_Angeles')
+            # df['date.local'] = df['date.local'].dt.tz_localize(None)
+            # df = df[df['value'] > 0.0]
             
             return df
 
