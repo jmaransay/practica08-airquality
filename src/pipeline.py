@@ -69,4 +69,4 @@ if __name__ == "__main__":
 
     data_file = os.path.join(data_directory, "air_data.csv")
 
-    df.to_csv(data_file)
+    df.to_csv(data_file, mode='a', header=False)
