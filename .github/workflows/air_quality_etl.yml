@@ -26,6 +26,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: ETL Pipeline
+        env:
+          OPENAQ_KEY: ${{ secrets.OPENAQ_KEY }}
         run: |
           python src/pipeline.py
       - name: Peek Data output

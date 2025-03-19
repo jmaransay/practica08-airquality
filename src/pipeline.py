@@ -17,7 +17,8 @@ def extract_and_transform():
    
     api_url = "https://api.openaq.org/v3/sensors/7773515"
 
-    header={"x-api-key" : '7bd8f5e0855a1f97de174ec6213341cf47b669f5dd713fe8985cf49680727cbd'}
+    # header={"x-api-key" : '7bd8f5e0855a1f97de174ec6213341cf47b669f5dd713fe8985cf49680727cbd'}
+    header={"x-api-key" : os.environ['OPENAQ_KEY']}
     # Define the query parameters to API
     params = {
         # "location_id": "2162523", # Logroño, La Cigüeña
