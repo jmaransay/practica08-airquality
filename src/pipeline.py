@@ -13,7 +13,7 @@ def extract_and_transform():
     """
     
     # API URL
-    api_url = "https://api.openaq.org/v2/measurements"
+    api_url = "https://api.openaq.org/v3/measurements"
    
     header={"x-api-key" : '7bd8f5e0855a1f97de174ec6213341cf47b669f5dd713fe8985cf49680727cbd'}
     # Define the query parameters to API
