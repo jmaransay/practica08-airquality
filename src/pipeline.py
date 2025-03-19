@@ -39,7 +39,7 @@ def extract_and_transform():
                 print("Extracted dataframe is empty. No data to load.")
                 return None
 
-            #df['date.utc'] = pd.to_datetime(df['date.utc'], errors='coerce')
+            # df['date.utc'] = pd.to_datetime(df['date.utc'], errors='coerce')
             # df['date.local'] = df['date.utc'].dt.tz_convert('America/Los_Angeles')
             df['latest.datetime.utc'] = pd.to_datetime(df['latest.datetime.utc'], errors='coerce')
             df['latest.datetime.local'] = pd.to_datetime(df['latest.datetime.local'], errors='coerce').dt.tz_convert('Europe/Madrid')
@@ -69,4 +69,11 @@ if __name__ == "__main__":
 
     data_file = os.path.join(data_directory, "air_data.csv")
 
-    df.to_csv(data_file, mode='a', header=False)
+    if not os.path.exists (data_file):
+        df.to_csv(data_file)
+    else:
+        df.to_csv(data_file, mode='a', header=False)
+
+
+
+
