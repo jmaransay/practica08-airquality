@@ -13,12 +13,12 @@ def extract_and_transform():
     """
     
     # API URL
-    api_url = "https://api.openaq.org/v3/sensors/3917"
+    api_url = "https://api.openaq.org/v3/locations/2162523"
    
     header={"x-api-key" : '7bd8f5e0855a1f97de174ec6213341cf47b669f5dd713fe8985cf49680727cbd'}
     # Define the query parameters to API
     params = {
-        # "location_id": "1938", # Seattle, WA
+        # "location_id": "2162523", # Logroño, La Cigüeña
         # "parameter": ["pressure", "temperature", "um003", "um025", "um010", "pm10", "um100", "pm1", "um005", "humidity", "um050", "pm25"],
         "limit": 9000,
     }
