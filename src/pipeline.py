@@ -11,19 +11,19 @@ def extract_and_transform():
     df : pandas.DataFrame or None
         Dataframe containing the fetched measurements, or None if no data is fetched.
     """
-    
-    # API URL
-    # api_url = "https://api.openaq.org/v3/locations/2162523"
-   
+        
+    # It is worth noting that this sensor corresponds to one located in Logroño
+    # It reports hourly measures of CO2 mass, and the units are \mug / m^3
+    # Its latest data (and some others from the same station) can be also 
+    # retrieved from https://explore.openaq.org/locations/2162523
+
     api_url = "https://api.openaq.org/v3/sensors/7773515"
 
-    # header={"x-api-key" : '7bd8f5e0855a1f97de174ec6213341cf47b669f5dd713fe8985cf49680727cbd'}
+    
     header={"x-api-key" : os.environ['OPENAQ_KEY']}
     # Define the query parameters to API
     params = {
-        # "location_id": "2162523", # Logroño, La Cigüeña
-        # "parameter": ["pressure", "temperature", "um003", "um025", "um010", "pm10", "um100", "pm1", "um005", "humidity", "um050", "pm25"],
-        "limit": 9000,
+        "limit": 1000,
     }
     
     try:
@@ -40,13 +40,9 @@ def extract_and_transform():
                 print("Extracted dataframe is empty. No data to load.")
                 return None
 
-            # df['date.utc'] = pd.to_datetime(df['date.utc'], errors='coerce')
-            # df['date.local'] = df['date.utc'].dt.tz_convert('America/Los_Angeles')
+            # We convert the datetime information of last measure to recognisable format:
             df['latest.datetime.utc'] = pd.to_datetime(df['latest.datetime.utc'], errors='coerce')
             df['latest.datetime.local'] = pd.to_datetime(df['latest.datetime.local'], errors='coerce').dt.tz_convert('Europe/Madrid')
-
-            # df['date.local'] = df['date.local'].dt.tz_localize(None)
-            # df = df[df['value'] > 0.0]
             
             return df
 
@@ -63,7 +59,6 @@ def extract_and_transform():
 if __name__ == "__main__":
     df = extract_and_transform()
 
-    # save the data in the data directory
     data_directory = os.path.join(os.getcwd(), "data")
     if not os.path.exists(data_directory):
         os.makedirs(data_directory)
@@ -71,9 +66,9 @@ if __name__ == "__main__":
     data_file = os.path.join(data_directory, "air_data.csv")
 
     if not os.path.exists (data_file):
-        df.to_csv(data_file)
+        df.to_csv(data_file, index=True)
     else:
-        df.to_csv(data_file, mode='a', header=False)
+        df.to_csv(data_file, mode='a', header=False, index=True)
 
 
 
