@@ -14,7 +14,8 @@ def extract_and_transform():
     
     # API URL
     api_url = "https://api.openaq.org/v2/measurements"
-    
+   
+    header={"x-api-key" : '7bd8f5e0855a1f97de174ec6213341cf47b669f5dd713fe8985cf49680727cbd'}
     # Define the query parameters to API
     params = {
         "location_id": "1938", # Seattle, WA
@@ -24,7 +25,7 @@ def extract_and_transform():
     
     try:
         # Make the GET request
-        response = requests.get(api_url, params=params, timeout=120)
+        response = requests.get(api_url, params=params, header=header, timeout=120)
         response.raise_for_status()  # Raise exception for HTTP errors
         
         if response.status_code == 200:
