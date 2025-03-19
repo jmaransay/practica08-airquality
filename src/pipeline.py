@@ -66,7 +66,7 @@ if __name__ == "__main__":
     data_file = os.path.join(data_directory, "air_data.csv")
 
     if not os.path.exists (data_file):
-        df.to_csv(data_file, index=True)
+        df.to_csv(data_file, index=False)
     else:
         df.to_csv(data_file, mode='a', header=False, index=False)
 
